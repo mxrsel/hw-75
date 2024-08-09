@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TextField, Button, Container, Stack } from '@mui/material';
 
 const App: React.FC = () => {
-
+    const [message, setMessage] = useState('');
+    const [password, setPassword] = useState('');
+    const [result, setResult] = useState('');
 
     return (
         <Container>
