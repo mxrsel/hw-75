@@ -16,6 +16,16 @@ const App: React.FC = () => {
             console.error('Error encoding text:', error);
         }
     };
+
+    const handleDecode = async () => {
+        try {
+            const response = await axiosApi.post('/decode', { message: result, password });
+            setMessage(response.data.decoded);
+        } catch (error) {
+            console.error('Error decoding text:', error);
+        }
+    };
+
     return (
         <Container>
             <Stack spacing={2}>
@@ -28,12 +38,16 @@ const App: React.FC = () => {
                 <TextField
                     label="Password"
                     variant="outlined"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button variant="contained" onClick={handleEncode}>Encode</Button>
-                <Button variant="contained" >Decode</Button>
+                <Button variant="contained" onClick={handleDecode}>Decode</Button>
                 <TextField
                     label="Result"
                     variant="outlined"
+                    value={result}
+                    onChange={(e) => setResult(e.target.value)}
                 />
             </Stack>
         </Container>
